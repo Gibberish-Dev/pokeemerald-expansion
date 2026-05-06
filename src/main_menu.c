@@ -166,7 +166,6 @@
 
 static EWRAM_DATA u16 sCurrItemAndOptionMenuCheck = 0;
 
-static u8 sBirchSpeechMainTaskId;
 
 // Static ROM declarations
 
@@ -1837,15 +1836,10 @@ static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *sprite)
     sprite->data[0] = y;
 }
 
-static u8 NewGameBirchSpeech_CreateLotadSprite(u8 x, u8 y)
-{
-    return CreateMonPicSprite_Affine(SPECIES_LOTAD, FALSE, 0, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
-}
 
 static void AddBirchSpeechObjects(u8 taskId)
 {
     u8 birchSpriteId;
-    u8 lotadSpriteId;
     u8 brendanSpriteId;
     u8 maySpriteId;
 
