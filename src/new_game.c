@@ -47,6 +47,7 @@
 #include "mystery_gift.h"
 #include "union_room_chat.h"
 #include "constants/map_groups.h"
+#include "constants/heal_locations.h"
 #include "constants/items.h"
 #include "difficulty.h"
 #include "follower_npc.h"
@@ -145,11 +146,11 @@ static void WarpToTruck(void)
             SetLastHealLocationWarp(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F);
             VarSet(VAR_LITTLEROOT_INTRO_STATE, 1);
             VarSet(VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1);
-            SetFlag(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM);
-            SetFlag(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK);
-            SetFlag(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM);
-            SetFlag(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING);
-            SetFlag(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL);
+            FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM);
+            FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK);
+            FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM);
+            FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING);
+            FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL);
         }
         else
         {
@@ -157,11 +158,11 @@ static void WarpToTruck(void)
             SetLastHealLocationWarp(HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F);
             VarSet(VAR_LITTLEROOT_INTRO_STATE, 2);
             VarSet(VAR_LITTLEROOT_HOUSES_STATE_MAY, 1);
-            SetFlag(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM);
-            SetFlag(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK);
-            SetFlag(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM);
-            SetFlag(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING);
-            SetFlag(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL);
+            FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM);
+            FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK);
+            FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM);
+            FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING);
+            FlagSet(FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL);
         }
     }
     WarpIntoMap();
