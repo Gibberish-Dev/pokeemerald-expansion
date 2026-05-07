@@ -29,7 +29,8 @@ gText_Birch_WhatsYourName::
 	.string "Do you remember your name?$"
 
 gText_Birch_SoItsPlayer::
-	.string "Are you sure it's {PLAYER}{KUN}?$"
+	.string "Are you sure it's {PLAYER}{KUN}?\p"
+	.string "What about the time?$"
 
 gText_Birch_YourePlayer::
 	.string "Ah, great!\p"
