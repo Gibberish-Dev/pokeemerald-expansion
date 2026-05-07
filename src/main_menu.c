@@ -1384,6 +1384,7 @@ static void Task_NewGameBirchSpeech_AndYouAre(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
     {
+        NewGameBirchSpeech_ClearWindow(0);
         StringExpandPlaceholders(gStringVar4, gText_Birch_AndYouAre);
         AddTextPrinterForMessage(TRUE);
         gTasks[taskId].func = Task_NewGameBirchSpeech_StartBirchPlatformFade;
@@ -2197,7 +2198,7 @@ static void NewGameBirchSpeech_ClearWindow(u8 windowId)
     u8 winWidth = GetWindowAttribute(windowId, WINDOW_WIDTH);
     u8 winHeight = GetWindowAttribute(windowId, WINDOW_HEIGHT);
 
-    FillWindowPixelRect(windowId, bgColor, 0, 0, maxCharWidth * winWidth, maxCharHeight * winHeight);
+    FillWindowPixelRect(windowId, PIXEL_FILL(bgColor), 0, 0, maxCharWidth * winWidth, maxCharHeight * winHeight);
     CopyWindowToVram(windowId, COPYWIN_GFX);
 }
 
