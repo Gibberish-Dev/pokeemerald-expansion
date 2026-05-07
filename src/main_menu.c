@@ -1911,6 +1911,7 @@ static void Task_NewGameBirchSpeech_ShowClockUI(u8 taskId)
     SetMainCallback2(CB2_StartWallClock);
 }
 
+static void SpriteCB_Null(struct Sprite *sprite)
 {
 }
 
