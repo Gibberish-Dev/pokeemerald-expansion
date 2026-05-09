@@ -1660,7 +1660,11 @@ static void Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter(u8 taskId)
         gSprites[gTasks[taskId].tBirchSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
         if (!RunTextPrintersAndIsPrinter0Active())
         {
-            gTasks[taskId].func = Task_NewGameBirchSpeech_ShowClockUI;
+            gSprites[gTasks[taskId].tBirchSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+            NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
+            NewGameBirchSpeech_StartFadePlatformIn(taskId, 1);
+            gTasks[taskId].tTimer = 64;
+            gTasks[taskId].func = Task_NewGameBirchSpeech_AreYouReady;
         }
     }
 }
@@ -1779,8 +1783,8 @@ static void CB2_NewGameBirchSpeech_ReturnFromNamingScreen(void)
     LoadPalette(sBirchSpeechBgPals, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
     LoadPalette(&sBirchSpeechBgGradientPal[1], BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
     ResetTasks();
-    taskId = CreateTask(Task_NewGameBirchSpeech_ReshowBirch, 0);
-    gTasks[taskId].tIsDoneFadingSprites = TRUE;
+    InitTimeBasedEvents();
+    taskId = CreateTask(Task_NewGameBirchSpeech_ReturnFromNamingScreenShowTextbox, 0);
     gTasks[taskId].tBG1HOFS = -60;
     ScanlineEffect_Stop();
     ResetSpriteData();
@@ -2278,13 +2282,8 @@ static void NewGameBirchSpeech_ClearGenderWindow(u8 windowId, bool8 copyToVram)
 static void NewGameBirchSpeech_ClearWindow(u8 windowId)
 {
     u8 bgColor = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_BACKGROUND);
-    u8 maxCharWidth = GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_WIDTH);
-    u8 maxCharHeight = GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT);
-    u8 winWidth = GetWindowAttribute(windowId, WINDOW_WIDTH);
-    u8 winHeight = GetWindowAttribute(windowId, WINDOW_HEIGHT);
-
-    FillWindowPixelRect(windowId, PIXEL_FILL(bgColor), 0, 0, maxCharWidth * winWidth, maxCharHeight * winHeight);
-    CopyWindowToVram(windowId, COPYWIN_GFX);
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(bgColor));
+    CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
 void CreateYesNoMenuParameterized(u8 x, u8 y, u16 baseTileNum, u16 baseBlock, u8 yesNoPalNum, u8 winPalNum)
