@@ -18,7 +18,7 @@ gText_Birch_MainSpeech::
 	.string "$"
 
 gText_Birch_AndYouAre::
-	.string "Let's start with something simple.$"
+	.string "Let's start with this.$"
 
 gText_Birch_BoyOrGirl::
 	.string "Are you a boy?\n"
@@ -30,13 +30,12 @@ gText_Birch_WhatsYourName::
 
 gText_Birch_SoItsPlayer::
 	.string "Are you sure it's {PLAYER}{KUN}?\p"
-	.string "What about the time?$"
 
 gText_Birch_YourePlayer::
 	.string "Ah, great!\p"
 	.string "It looks like you remember some things\n"
 	.string "after all!\p"
-	.string "$"
+	.string "What about the time?$"
 
 gText_Birch_AreYouReady::
 	.string "All right, are you sure your feeling\n"

@@ -1660,11 +1660,7 @@ static void Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter(u8 taskId)
         gSprites[gTasks[taskId].tBirchSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
         if (!RunTextPrintersAndIsPrinter0Active())
         {
-            gSprites[gTasks[taskId].tBirchSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-            NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
-            NewGameBirchSpeech_StartFadePlatformIn(taskId, 1);
-            gTasks[taskId].tTimer = 64;
-            gTasks[taskId].func = Task_NewGameBirchSpeech_AreYouReady;
+            gTasks[taskId].func = Task_NewGameBirchSpeech_ShowClockUI;
         }
     }
 }
@@ -1783,8 +1779,8 @@ static void CB2_NewGameBirchSpeech_ReturnFromNamingScreen(void)
     LoadPalette(sBirchSpeechBgPals, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
     LoadPalette(&sBirchSpeechBgGradientPal[1], BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
     ResetTasks();
-    taskId = CreateTask(Task_NewGameBirchSpeech_ShowClockUI, 0);
-    gTasks[taskId].tTimer = 5;
+    taskId = CreateTask(Task_NewGameBirchSpeech_ReshowBirch, 0);
+    gTasks[taskId].tIsDoneFadingSprites = TRUE;
     gTasks[taskId].tBG1HOFS = -60;
     ScanlineEffect_Stop();
     ResetSpriteData();
@@ -1860,7 +1856,9 @@ static void CB2_NewGameBirchSpeech_ReturnFromClockUI(void)
     LoadPalette(sBirchSpeechBgPals, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
     LoadPalette(&sBirchSpeechBgGradientPal[1], BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
     ResetTasks();
-    taskId = CreateTask(Task_NewGameBirchSpeech_ReshowBirch, 0);
+    taskId = CreateTask(Task_NewGameBirchSpeech_AreYouReady, 0);
+    gTasks[taskId].tTimer = 64;
+    gTasks[taskId].tIsDoneFadingSprites = TRUE;
     gTasks[taskId].tBG1HOFS = -60;
     ScanlineEffect_Stop();
     ResetSpriteData();
